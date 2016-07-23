@@ -6,21 +6,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Button btn;
-
+    EditText nameTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
+        nameTxt = (EditText) this.findViewById(R.id.nameTxt);
         btn=(Button)this.findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, "hello toast", Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("name",nameTxt.getText().toString());
                 startActivity(intent);
             }
         });
